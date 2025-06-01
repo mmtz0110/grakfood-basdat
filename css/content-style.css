@@ -1,0 +1,242 @@
+/* Container umum */
+.container, .tambah-data, .table-content {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Judul Halaman */
+.container .content h4 {
+    font-size: 24px;
+    background-color: #ffcc00;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    margin-bottom: 10px;
+}
+
+/* Form Tambah Data */
+.tambah-data .content {
+    background-color: #fff8dc;
+    border: 2px solid #000;
+    padding: 20px;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.tambah-data h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.tambah-data label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.tambah-data input[type="text"],
+.tambah-data input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    border: 2px solid #000;
+    background-color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Tombol simpan */
+.modal-footer {
+    text-align: right;
+}
+
+.modal-footer button {
+    background-color: #00cc66;
+    color: #fff;
+    border: 2px solid #000;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 2px 2px 0 #000;
+    transition: all 0.2s ease-in-out;
+}
+
+.modal-footer button:hover {
+    background-color: #009944;
+    transform: scale(1.05);
+}
+
+/* Tabel Data Pegawai */
+.table-content {
+    margin-top: 30px;
+}
+
+.table-content table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f0f0f0;
+    border: 2px solid #000;
+    font-size: 16px;
+}
+
+.table-content th, .table-content td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.table-content th {
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border-bottom: 3px solid #000;
+}
+
+.table-content tr:nth-child(even) {
+    background-color: #d0f0d0;
+}
+
+.table-content tr:hover {
+    background-color: #c0ffc0;
+}
+
+.modal-edit {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 300px;
+    border: 2px solid #333;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    background: #fffae3;
+    box-shadow: 0px 0px 15px #00000070;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    width: 100%;
+    padding: 6px;
+    margin: 6px 0 12px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    color: red;
+    font-size: 22px;
+    cursor: pointer;
+}
+.btn-edit,
+.btn-delete {
+    padding: 6px 12px;
+    margin: 2px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.btn-edit {
+    background-color: #00cbda;
+}
+    .btn-edit:hover{
+        background-color: #00909b;
+    }
+
+.btn-delete {
+    background-color: #be0404;
+    color: white;
+    text-decoration: none;
+}
+    .btn-delete:hover{
+        background-color: #6b0000;
+    }
+
+.modal-toggle {
+    display: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    border: 2px solid #000;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-toggle:checked + .modal-overlay {
+    display: flex;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #444;
+}
+
+.modal-box input[type="text"],
+.modal-box input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.modal-box button {
+    background: seagreen;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+.modal-box h3 {
+    margin-top: 0;
+}
