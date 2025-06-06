@@ -71,7 +71,7 @@ $no = 1;
             <th>No</th>
             <th>ID Pesanan</th>
             <th>Tanggal Pesan</th>
-            <th>ID Pelanggan</th>
+            <th>Nama Pelanggan</th>
             <th>Nama Makanan</th>
             <th>Harga</th>
             <th>Total</th>

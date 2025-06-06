@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2025 at 12:16 AM
+-- Generation Time: Jun 07, 2025 at 01:21 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -39,8 +39,11 @@ CREATE TABLE `makanan` (
 --
 
 INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `id_resto`, `harga`) VALUES
-('MAK001', 'Ayam Balado', 'RES001', '7000.00'),
-('MAK002', 'Bebek Sambal HYTAM', 'RES002', '12000.00');
+('MAK001', 'Nasi Goreng', 'RES001', '15000.00'),
+('MAK002', 'Es Teh', 'RES002', '5000.00'),
+('MAK003', 'Ayam Bakar', 'RES001', '22000.00'),
+('MAK004', 'Sate Ayam', 'RES003', '18000.00'),
+('MAK005', 'Mie Goreng', 'RES002', '13000.00');
 
 -- --------------------------------------------------------
 
@@ -60,9 +63,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `username`, `password`, `nama_pegawai`) VALUES
-('PEG001', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Etmin Garang'),
-('PEG002', 'kafidanil', '81dc9bdb52d04dc20036dbd8313ed055', 'Daniel Kafi'),
-('PEG003', 'chachawo', '81dc9bdb52d04dc20036dbd8313ed055', 'Chauu');
+('PEG001', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin Garang');
 
 -- --------------------------------------------------------
 
@@ -81,10 +82,11 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_hp`) VALUES
-('PEL001', 'Rifki Aw', '085967543356'),
-('PEL002', 'Pashasp', '085332754335'),
-('PEL003', 'Rezahar', '085967543345'),
-('PEL004', 'Caww', '085993753356');
+('PEL001', 'Fajar', '081234567001'),
+('PEL002', 'Mumtaz', '081234567002'),
+('PEL003', 'Nadia', '081234567003'),
+('PEL004', 'Raka', '081234567004'),
+('PEL005', 'Laras', '081234567005');
 
 -- --------------------------------------------------------
 
@@ -105,8 +107,11 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `id_pelanggan`, `id_makanan`, `OrderDate`, `jumlah`) VALUES
-('PES001', 'PEL001', 'MAK001', '2025-06-07', 2),
-('PES002', 'PEL002', 'MAK002', '2025-06-21', 5);
+('PES001', 'PEL001', 'MAK001', '2024-06-01', 2),
+('PES002', 'PEL002', 'MAK003', '2024-06-02', 1),
+('PES003', 'PEL003', 'MAK004', '2024-06-03', 3),
+('PES004', 'PEL004', 'MAK005', '2024-06-04', 2),
+('PES005', 'PEL005', 'MAK002', '2024-06-05', 1);
 
 -- --------------------------------------------------------
 
@@ -126,8 +131,9 @@ CREATE TABLE `restoran` (
 --
 
 INSERT INTO `restoran` (`id_resto`, `nama_resto`, `nama_pemilik`, `alamat`) VALUES
-('RES001', 'Warnas Dedo', 'teh dedo(h)', 'Jalan Raya Cibolang'),
-('RES002', 'Beber Cabok', 'Tretas Muslin', 'Madura Jawa');
+('RES001', 'Warung Barokah', 'Bu Tatik', 'Jl. Merdeka No.10'),
+('RES002', 'Kedai KM 30', 'Barudak Kedai', 'Jl. Sukabumi Utara'),
+('RES003', 'Dapur Ayam', 'Pak Ridwan', 'Jl. Raya No.88');
 
 --
 -- Indexes for dumped tables
@@ -157,6 +163,7 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id_pesanan`),
+  ADD UNIQUE KEY `id_makanan` (`id_makanan`),
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
@@ -179,7 +186,8 @@ ALTER TABLE `makanan`
 -- Constraints for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`),
+  ADD CONSTRAINT `pesanan_ibfk_2` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
