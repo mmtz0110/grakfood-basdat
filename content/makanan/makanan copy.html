@@ -18,7 +18,7 @@
             <input type="text" name="nama_makanan" placeholder="Input Nama Makanan" required>
             <label>Nama Restoran</label>
                 <select name="id_resto" class="form-control" required>
-                    <option value="">Pilih Restoran</option>
+                    <option value="">->PILIH<-</option>
                     <?php
                         mysqli_data_seek($data_resto, 0); // biar bisa di-loop terus tiap modal
                         while ($resto = mysqli_fetch_array($data_resto)) {
@@ -79,7 +79,7 @@
                     <input type="text" name="nama_makanan" value="<?php echo $row['nama_makanan']; ?>" required>
 
                     <label>Nama Restoran</label>
-                <select name="id_resto" class="form-control" required>
+                <select name="id_resto" classs="form-control" required>
                     <option value="">->PILIH<-</option>
                     <?php
                         mysqli_data_seek($data_resto, 0); // biar bisa di-loop terus tiap modal

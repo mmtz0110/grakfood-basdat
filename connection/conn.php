@@ -1,3 +1,3 @@
 <?php
-    $conn = mysqli_connect("localhost","root","","db_grakfood")
+    $conn = mysqli_connect("localhost","root","","db_grakfood");
 ?>
