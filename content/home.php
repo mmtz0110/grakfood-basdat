@@ -1,5 +1,9 @@
 <?php
+session_start();
 include './connection/conn.php';
+
+// Ambil nama dari session
+$nama_login = isset($_SESSION['nama_pegawai']) ? $_SESSION['nama_pegawai'] : 'User';
 
 // Hitung semua jumlah data
 $jml_pegawai   = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM pegawai"));
@@ -12,6 +16,9 @@ $jml_pesanan   = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM pesanan"));
 <link rel="stylesheet" href="css/content-style.css">
 
 <div class="container">
+    <div class="welcome-message" style="text-align: center; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 18px; background-color: #fffacd; padding: 10px; border: 2px solid #000; box-shadow: 3px 3px 0 #000;">
+        Selamat datang di program pemesanan makanan, <b><?= $nama_login ?></b> 👋
+    </div>
     <div class="content">
         <h4>Dashboard</h4>
     </div>

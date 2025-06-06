@@ -14,6 +14,7 @@ if ($cek_data > 0) {
 
     $_SESSION['login'] = "login";
     $_SESSION['id_pegawai'] = $row['id_pegawai'];
+    $_SESSION['nama_pegawai'] = $row['nama_pegawai'];
 
     header("Location: media.php?content=home");
 } else {
