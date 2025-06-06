@@ -1,9 +1,11 @@
 <?php
-    include '././connection/conn.php';
-    $data_resto = mysqli_query($conn, "SELECT * FROM restoran");
-    $no = 1;
+include '././connection/conn.php';
+$data_resto = mysqli_query($conn, "SELECT * FROM restoran");
+$no = 1;
 ?>
-<link rel="stylesheet" href="../../css/content-style.css">
+
+<link rel="stylesheet" href="/grakfood/css/content-style.css">
+
 <div class="container">
     <div class="content">
         <h4>Data Makanan</h4>
@@ -12,25 +14,26 @@
 
 <div class="tambah-data">
     <div class="content">
-        <form action="content/makanan/act_makanan.php" method='post'>
-            <h4>Tambah Data makanan</h4>
+        <form action="content/makanan/act_makanan.php" method="post">
+            <h4>Tambah Data Makanan</h4>
+
             <label>Nama Makanan</label>
             <input type="text" name="nama_makanan" placeholder="Input Nama Makanan" required>
+
             <label>Nama Restoran</label>
-                <select name="id_resto" class="form-control" required>
-                    <option value="">Pilih Restoran</option>
-                    <?php
-                        mysqli_data_seek($data_resto, 0); // biar bisa di-loop terus tiap modal
-                        while ($resto = mysqli_fetch_array($data_resto)) {
-                            $selected = ($resto['id_resto'] == $row['id_resto']) ? 'selected' : '';
-                    ?>
-                        <option value="<?php echo $resto['id_resto']; ?>" <?php echo $selected; ?>>
-                            <?php echo $resto['nama_resto']; ?>
-                        </option>
-                    <?php } ?>
-                </select>
+            <select name="id_resto" class="form-control" required>
+                <option value="">Pilih Restoran</option>
+                <?php
+                mysqli_data_seek($data_resto, 0);
+                while ($resto = mysqli_fetch_array($data_resto)) {
+                ?>
+                    <option value="<?= $resto['id_resto'] ?>"><?= $resto['nama_resto'] ?></option>
+                <?php } ?>
+            </select>
+
             <label>Harga</label>
-            <input type="text" name="alamat" placeholder="Input Harga" required>
+            <input type="text" name="harga" placeholder="Input Harga" required>
+
             <div class="modal-footer">
                 <button type="submit">Simpan</button>
             </div>
@@ -48,57 +51,63 @@
             <th>Harga</th>
             <th>Tools</th>
         </tr>
+
         <?php
-        $data_makanan = mysqli_query($conn, "SELECT * FROM makanan,restoran",);
-            while ($row=mysqli_fetch_array($data_makanan)){
-                $modalId = 'modal-'.$row['id_makanan'];
+        // PERBAIKI QUERY INI
+        $data_makanan = mysqli_query($conn, "
+            SELECT m.*, r.nama_resto
+            FROM makanan m
+            JOIN restoran r ON m.id_resto = r.id_resto
+        ");
+
+        while ($row = mysqli_fetch_array($data_makanan)) {
+            $modalId = 'modal-' . $row['id_makanan'];
         ?>
-        <tr>
-            <td><?php echo $no++?></td>
-            <td><?php echo $row['id_makanan']?></td>
-            <td><?php echo $row['nama_makanan']?></td>
-            <td><?php echo $row['nama_resto']?></td>
-            <td><?php echo "Rp.".number_format($row['harga'])?></td>
-            <td>
-                <!-- Modal trigger -->
-                <label for="<?php echo $modalId ?>" class="btn-edit">Edit</label>
-                <a href="content/makanan/delete_makanan.php?id=<?php echo $row['id_makanan']?>" onClick="return confirm('apakah Anda Yakin Hapus Data?')" class="btn-delete">Hapus</a>
-            </td>
-        </tr>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $row['id_makanan'] ?></td>
+                <td><?= $row['nama_makanan'] ?></td>
+                <td><?= $row['nama_resto'] ?></td>
+                <td><?= "Rp." . number_format($row['harga']) ?></td>
+                <td>
+                    <div class="tool-buttons">
+                        <label for="<?= $modalId ?>" class="btn-edit">Edit</label>
+                        <a href="content/makanan/delete_makanan.php?id=<?= $row['id_makanan'] ?>" class="btn-delete" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                    </div>
+                </td>
+            </tr>
 
-        <!-- Modal edit -->
-        <input type="checkbox" id="<?php echo $modalId ?>" class="modal-toggle" hidden>
-        <div class="modal-overlay">
-            <div class="modal-box">
-                <label for="<?php echo $modalId ?>" class="close-btn">&times;</label>
-                <form action="content/makanan/act_edit_makanan.php" method="post">
-                    <h3>Edit Makanan</h3>
-                    <input type="hidden" name="id_makanan" value="<?php echo $row['id_makanan']; ?>">
+            <!-- Modal Edit -->
+            <input type="checkbox" id="<?= $modalId ?>" class="modal-toggle" hidden>
+            <div class="modal-overlay">
+                <div class="modal-box">
+                    <label for="<?= $modalId ?>" class="close-btn">&times;</label>
+                    <form action="content/makanan/act_edit_makanan.php" method="post">
+                        <h3>Edit Makanan</h3>
+                        <input type="hidden" name="id_makanan" value="<?= $row['id_makanan'] ?>">
 
-                    <label>Nama Makanan</label>
-                    <input type="text" name="nama_makanan" value="<?php echo $row['nama_makanan']; ?>" required>
+                        <label>Nama Makanan</label>
+                        <input type="text" name="nama_makanan" value="<?= $row['nama_makanan'] ?>" required>
 
-                    <label>Nama Restoran</label>
-                <select name="id_resto" class="form-control" required>
-                    <option value="">->PILIH<-</option>
-                    <?php
-                        mysqli_data_seek($data_resto, 0); // biar bisa di-loop terus tiap modal
-                        while ($resto = mysqli_fetch_array($data_resto)) {
-                            $selected = ($resto['id_resto'] == $row['id_resto']) ? 'selected' : '';
-                    ?>
-                        <option value="<?php echo $resto['id_resto']; ?>" <?php echo $selected; ?>>
-                            <?php echo $resto['nama_resto']; ?>
-                        </option>
-                    <?php } ?>
-                </select>
+                        <label>Nama Restoran</label>
+                        <select name="id_resto" class="form-control" required>
+                            <option value="">Pilih Restoran</option>
+                            <?php
+                            mysqli_data_seek($data_resto, 0);
+                            while ($resto = mysqli_fetch_array($data_resto)) {
+                                $selected = ($resto['id_resto'] == $row['id_resto']) ? 'selected' : '';
+                                echo "<option value='{$resto['id_resto']}' $selected>{$resto['nama_resto']}</option>";
+                            }
+                            ?>
+                        </select>
 
-                    <label>Harga</label>
-                    <input type="text" name="harga" value="<?php echo $row['harga']; ?>" required>
+                        <label>Harga</label>
+                        <input type="text" name="harga" value="<?= $row['harga'] ?>" required>
 
-                    <button type="submit">Simpan</button>
-                </form>
+                        <button type="submit">Simpan</button>
+                    </form>
+                </div>
             </div>
-        </div>
         <?php } ?>
     </table>
 </div>

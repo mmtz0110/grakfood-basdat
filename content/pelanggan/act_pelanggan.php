@@ -6,7 +6,7 @@
 
     $query = mysqli_query($conn, "SELECT MAX(id_pelanggan) AS pelanggan FROM pelanggan");
     $data = mysqli_fetch_array($query);
-    $lastID = $data['id_pelanggan'];
+    $lastID = $data['pelanggan'];
 
     if ($lastID) {
         $lastNumber = (int) substr($lastID, 3);

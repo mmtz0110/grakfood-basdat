@@ -48,8 +48,10 @@
             <td><?php echo $row['alamat']?></td>
             <td>
                 <!-- Modal trigger -->
-                <label for="<?php echo $modalId ?>" class="btn-edit">Edit</label>
-                <a href="content/restoran/delete_resto.php?id=<?php echo $row['id_resto']?>" onClick="return confirm('apakah Anda Yakin Hapus Data?')" class="btn-delete">Hapus</a>
+                <div class="tool-buttons">
+                    <label for="<?php echo $modalId ?>" class="btn-edit">Edit</label>
+                    <a href="content/restoran/delete_resto.php?id=<?php echo $row['id_resto']?>" onClick="return confirm('apakah Anda Yakin Hapus Data?')" class="btn-delete">Hapus</a>
+                </div>
             </td>
         </tr>
 

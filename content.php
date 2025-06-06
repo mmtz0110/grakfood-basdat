@@ -22,10 +22,6 @@ if (isset($_GET['content'])){
     elseif($_GET['content']=='pesanan'){
         include 'content/pesanan/pesanan.php';}
         // END PESANAN
-
-    elseif($_GET['content']=='detail'){
-        include 'content/detail_pesanan/detail_pesanan.php';}
-    // END DETAIL PESANAN
     
     else{
         echo "<script>alert('Modul tidak ditemukan!'); window.location.href='home.php'</script>";

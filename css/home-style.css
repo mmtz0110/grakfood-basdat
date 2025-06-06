@@ -1,0 +1,60 @@
+.dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 1000px;
+}
+
+.card-retro {
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+    background-color: #fff8dc;
+    width: 200px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-retro:hover {
+    transform: scale(1.03);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.card-retro .card-header {
+    background-color: #ffcc00;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+}
+
+.card-retro .card-body {
+    padding: 20px 10px;
+}
+
+.card-retro h2 {
+    font-size: 32px;
+    color: #333;
+    margin: 0 0 10px;
+}
+
+.card-retro p {
+    margin: 0 0 15px;
+    font-size: 14px;
+}
+
+.card-retro .btn-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: seagreen;
+    color: #fff;
+    border: 2px solid #000;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.card-retro .btn-link:hover {
+    background-color: darkgreen;
+}

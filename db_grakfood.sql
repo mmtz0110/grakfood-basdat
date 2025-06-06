@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2025 at 09:38 PM
+-- Generation Time: Jun 07, 2025 at 12:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_pesan`
---
-
-CREATE TABLE `detail_pesan` (
-  `id_detail` varchar(11) NOT NULL,
-  `id_pesanan` varchar(11) NOT NULL,
-  `id_makanan` varchar(11) NOT NULL,
-  `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `makanan`
 --
 
@@ -46,6 +33,14 @@ CREATE TABLE `makanan` (
   `id_resto` varchar(11) NOT NULL,
   `harga` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `makanan`
+--
+
+INSERT INTO `makanan` (`id_makanan`, `nama_makanan`, `id_resto`, `harga`) VALUES
+('MAK001', 'Ayam Balado', 'RES001', '7000.00'),
+('MAK002', 'Bebek Sambal HYTAM', 'RES002', '12000.00');
 
 -- --------------------------------------------------------
 
@@ -66,7 +61,8 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id_pegawai`, `username`, `password`, `nama_pegawai`) VALUES
 ('PEG001', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Etmin Garang'),
-('PEG002', 'kafidanil', '81dc9bdb52d04dc20036dbd8313ed055', 'Daniel Kafi');
+('PEG002', 'kafidanil', '81dc9bdb52d04dc20036dbd8313ed055', 'Daniel Kafi'),
+('PEG003', 'chachawo', '81dc9bdb52d04dc20036dbd8313ed055', 'Chauu');
 
 -- --------------------------------------------------------
 
@@ -85,7 +81,10 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_hp`) VALUES
-('PEL001', 'RifkiAw', '085967543356');
+('PEL001', 'Rifki Aw', '085967543356'),
+('PEL002', 'Pashasp', '085332754335'),
+('PEL003', 'Rezahar', '085967543345'),
+('PEL004', 'Caww', '085993753356');
 
 -- --------------------------------------------------------
 
@@ -96,8 +95,18 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_hp`) VALUES
 CREATE TABLE `pesanan` (
   `id_pesanan` varchar(11) NOT NULL,
   `id_pelanggan` varchar(11) NOT NULL,
-  `OrderDate` date NOT NULL DEFAULT curdate()
+  `id_makanan` varchar(11) NOT NULL,
+  `OrderDate` date NOT NULL DEFAULT curdate(),
+  `jumlah` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_pelanggan`, `id_makanan`, `OrderDate`, `jumlah`) VALUES
+('PES001', 'PEL001', 'MAK001', '2025-06-07', 2),
+('PES002', 'PEL002', 'MAK002', '2025-06-21', 5);
 
 -- --------------------------------------------------------
 
@@ -107,20 +116,22 @@ CREATE TABLE `pesanan` (
 
 CREATE TABLE `restoran` (
   `id_resto` varchar(11) NOT NULL,
-  `nama_resto` varchar(100) NOT NULL
+  `nama_resto` varchar(100) NOT NULL,
+  `nama_pemilik` varchar(32) NOT NULL,
+  `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `restoran`
+--
+
+INSERT INTO `restoran` (`id_resto`, `nama_resto`, `nama_pemilik`, `alamat`) VALUES
+('RES001', 'Warnas Dedo', 'teh dedo(h)', 'Jalan Raya Cibolang'),
+('RES002', 'Beber Cabok', 'Tretas Muslin', 'Madura Jawa');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `detail_pesan`
---
-ALTER TABLE `detail_pesan`
-  ADD PRIMARY KEY (`id_detail`),
-  ADD UNIQUE KEY `id_pesanan` (`id_pesanan`,`id_makanan`),
-  ADD KEY `id_makanan` (`id_makanan`);
 
 --
 -- Indexes for table `makanan`
@@ -157,13 +168,6 @@ ALTER TABLE `restoran`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `detail_pesan`
---
-ALTER TABLE `detail_pesan`
-  ADD CONSTRAINT `detail_pesan_ibfk_1` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`),
-  ADD CONSTRAINT `detail_pesan_ibfk_2` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id_pesanan`);
 
 --
 -- Constraints for table `makanan`

@@ -10,7 +10,6 @@
             <li class="nav-item"><a href="media.php?content=restoran">Restoran</a></li>
             <li class="nav-item"><a href="media.php?content=makanan">Makanan</a></li>
             <li class="nav-item"><a href="media.php?content=pesanan">Pesanan</a></li>
-            <li class="nav-item"><a href="media.php?content=detail">Detail Pesanan</a></li>
             <li class="nav-item" id="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </div>

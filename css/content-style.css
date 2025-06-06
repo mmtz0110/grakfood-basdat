@@ -39,7 +39,9 @@
 }
 
 .tambah-data input[type="text"],
-.tambah-data input[type="password"] {
+.tambah-data input[type="password"],
+.tambah-data input[type="date"],
+.tambah-data input[type="number"] {
     width: 100%;
     padding: 8px;
     margin-top: 4px;
@@ -135,7 +137,9 @@
 }
 
 .modal-content input[type="text"],
-.modal-content input[type="password"] {
+.modal-content input[type="password"],
+.modal-content input[type="date"],
+.modal-content input[type="number"] {
     width: 100%;
     padding: 6px;
     margin: 6px 0 12px;
@@ -219,7 +223,9 @@
 }
 
 .modal-box input[type="text"],
-.modal-box input[type="password"] {
+.modal-box input[type="password"],
+.modal-box input[type="date"],
+.modal-box input[type="number"] {
     width: 100%;
     padding: 8px;
     margin-top: 4px;
@@ -263,4 +269,12 @@ select.form-control {
     background-size: 10px 10px;
     margin-bottom: 12px;
     transition: 0.2s;
+}
+
+.tool-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px; /* opsional buat jarak kecil */
 }

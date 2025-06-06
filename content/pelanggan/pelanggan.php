@@ -46,8 +46,10 @@
             <td><?php echo $row['no_hp']?></td>
             <td>
                 <!-- Modal trigger -->
-                <label for="<?php echo $modalId ?>" class="btn-edit">Edit</label>
-                <a href="content/pelanggan/delete_pelanggan.php?id=<?php echo $row['id_pelanggan']?>" onClick="return confirm('apakah Anda Yakin Hapus Data?')" class="btn-delete">Hapus</a>
+                <div class="">
+                    <label for="<?php echo $modalId ?>" class="btn-edit">Edit</label>
+                    <a href="content/pelanggan/delete_pelanggan.php?id=<?php echo $row['id_pelanggan']?>" onClick="return confirm('apakah Anda Yakin Hapus Data?')" class="btn-delete">Hapus</a>
+                </div>
             </td>
         </tr>
 
