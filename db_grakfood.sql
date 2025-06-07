@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2025 at 01:28 AM
+-- Generation Time: Jun 07, 2025 at 02:13 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -63,7 +63,8 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `username`, `password`, `nama_pegawai`) VALUES
-('PEG001', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin Garang');
+('PEG001', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'Admin Garang'),
+('PEG002', 'mumz110', 'b0a4fed42fc9723fc5ef166da6e25614', 'Agnaya Mumtazul');
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_hp`) VALUES
 CREATE TABLE `pesanan` (
   `id_pesanan` varchar(11) NOT NULL,
   `id_pelanggan` varchar(11) NOT NULL,
-  `id_makanan` varchar(11) NOT NULL,
+  `id_makanan` varchar(11) DEFAULT NULL,
   `OrderDate` date NOT NULL DEFAULT curdate(),
   `jumlah` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -107,11 +108,12 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `id_pelanggan`, `id_makanan`, `OrderDate`, `jumlah`) VALUES
-('PES001', 'PEL001', 'MAK001', '2024-06-01', 2),
-('PES002', 'PEL002', 'MAK003', '2024-06-02', 1),
-('PES003', 'PEL003', 'MAK004', '2024-06-03', 3),
-('PES004', 'PEL004', 'MAK005', '2024-06-04', 2),
-('PES005', 'PEL005', 'MAK002', '2024-06-05', 1);
+('PES001', 'PEL001', 'MAK001', '2024-06-09', 2),
+('PES002', 'PEL002', 'MAK003', '2024-06-09', 1),
+('PES003', 'PEL003', 'MAK002', '2024-06-09', 3),
+('PES004', 'PEL004', 'MAK005', '2024-06-09', 1),
+('PES005', 'PEL005', 'MAK004', '2024-06-09', 2),
+('PES006', 'PEL001', 'MAK001', '2025-06-07', 1);
 
 -- --------------------------------------------------------
 
@@ -163,8 +165,8 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id_pesanan`),
-  ADD UNIQUE KEY `id_makanan` (`id_makanan`),
-  ADD KEY `id_pelanggan` (`id_pelanggan`);
+  ADD KEY `id_pelanggan` (`id_pelanggan`),
+  ADD KEY `fk_id_makanan` (`id_makanan`);
 
 --
 -- Indexes for table `restoran`
@@ -186,8 +188,8 @@ ALTER TABLE `makanan`
 -- Constraints for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`),
-  ADD CONSTRAINT `pesanan_ibfk_2` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`);
+  ADD CONSTRAINT `fk_id_makanan` FOREIGN KEY (`id_makanan`) REFERENCES `makanan` (`id_makanan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
